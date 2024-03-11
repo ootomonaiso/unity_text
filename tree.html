@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .tree {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tree-item {
+      cursor: pointer;
+    }
+
+    .tree-item:hover {
+      background-color: #f0f0f0;
+    }
+
+    .selected {
+      background-color: #c0c0c0;
+    }
+
+    .nested {
+      display: none;
+    }
+
+    .nested.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<ul class="tree">
+  <li class="tree-item" onclick="toggleNested(this)">
+    <span>トップ</span>
+    <ul class="nested">
+      <li class="tree-item" onclick="event.stopPropagation()"><a href="top.html" target="main">トップ</a></li>
+    </ul>
+  </li>
+</ul>
+
+<script>
+  function toggleNested(item) {
+    const nestedList = item.querySelector('.nested');
+    nestedList.classList.toggle('show');
+
+    const treeItems = document.querySelectorAll('.tree-item');
+    treeItems.forEach(treeItem => treeItem.classList.remove('selected'));
+    item.classList.add('selected');
+  }
+</script>
+
+</body>
+</html>
